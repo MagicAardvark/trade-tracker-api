@@ -13,6 +13,7 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
   tableName: ${self:custom.stage}-trade-tracker
+  tableNameFunding: ${self:custom.stage}-trade-tracker-funding
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
@@ -34,6 +35,7 @@ provider:
 
   environment:
     tableName: ${self:custom.tableName}
+    tableNameFunding: ${self:custom.tableNameFunding}
     stripeSecretKey: ${self:custom.environment.stripeSecretKey}
 
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
@@ -73,6 +75,21 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  # Defines an HTTP API endpoint that calls the main function in createInitialFunds.js
+  # - path: url path is /trades
+  # - method: POST request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  createInitialFunds:
+    handler: createInitialFunds.main
+    events:
+      - http:
+          path: funding
+          method: post
+          cors: true
+          authorizer: aws_iam
+
   get:
     # Defines an HTTP API endpoint that calls the main function in get.js
     # - path: url path is /trades/{id}
@@ -81,6 +98,18 @@ functions:
     events:
       - http:
           path: trades/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  getFunds:
+    # Defines an HTTP API endpoint that calls the main function in getFunds.js
+    # - path: url path is /trades/{id}
+    # - method: GET request
+    handler: getFunds.main
+    events:
+      - http:
+          path: funding/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -105,6 +134,18 @@ functions:
     events:
       - http:
           path: trades/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+
+  updateFunding:
+    # Defines an HTTP API endpoint that calls the main function in updateFunding.js
+    # - path: url path is /trades/{id}
+    # - method: PUT request
+    handler: updateFunding.main
+    events:
+      - http:
+          path: funding/{id}
           method: put
           cors: true
           authorizer: aws_iam

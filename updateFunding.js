@@ -4,26 +4,19 @@ import { success, failure } from "./libs/response-lib";
 export async function main(event, context) {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: process.env.tableName,
+    TableName: process.env.tableNameFunding,
     // 'Key' defines the partition key and sort key of the item to be updated
     // - 'userId': Identity Pool identity id of the authenticated user
     // - 'tradeId': path parameter
     Key: {
       userId: event.requestContext.identity.cognitoIdentityId,
-      tradeId: event.pathParameters.id
+      fundingId: event.pathParameters.id
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET tradeDate = :tradeDate, ticker = :ticker, quantity = :quantity, pricePaid = :pricePaid, priceSold = :priceSold, type = :type, rating = :rating, notes = :notes",
+    UpdateExpression: "SET initialCapital = :initialCapital",
     ExpressionAttributeValues: {
-      ":tradeDate": data.tradeDate || null,
-      ":ticker": data.ticker || null,
-      ":quantity": data.quantity || null,
-      ":pricePaid": data.pricePaid || null,
-      ":priceSold": data.priceSold || null,
-      ":type": data.type || null,
-      ":rating": data.rating || null,
-      ":notes": data.notes || null,
+      ":initalCapital": data.initalCapital || 0,
     },
     ReturnValues: "ALL_NEW"
   };

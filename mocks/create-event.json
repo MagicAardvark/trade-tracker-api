@@ -1,5 +1,5 @@
 {
-  "body": "{\"content\":\"hello world\",\"attachment\":\"hello.jpg\"}",
+  "body": "{\"tradeDate\":\"12/12\",\"ticker\":\"YYYY\", \"quantity\":\"5\", \"pricePaid\":\"5\"}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "USER-SUB-1234"
