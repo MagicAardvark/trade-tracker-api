@@ -27,7 +27,11 @@ export async function main(event, context) {
         gainDollars: gainDollars(item),
         gainPercent: gainPercent(item),
       }
-    }));
+    }).sort((a,b)=>{
+      console.log('a,b', a,b)
+      return new Date(b.tradeDate) - new Date(a.tradeDate)
+    })
+      );
   } catch (e) {
     console.log(e)
     return failure({ status: false });
