@@ -21,7 +21,7 @@ export async function main(event, context) {
       ":quantity": data.quantity || null,
       ":pricePaid": data.pricePaid || null,
       ":priceSold": data.priceSold || null,
-      ":tradeType": data.type || null,
+      ":tradeType": data.tradeType || null,
       ":rating": data.rating || null,
       ":notes": data.notes || null,
     },
