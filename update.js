@@ -14,14 +14,14 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET tradeDate = :tradeDate, ticker = :ticker, quantity = :quantity, pricePaid = :pricePaid, priceSold = :priceSold, type = :type, rating = :rating, notes = :notes",
+    UpdateExpression: "SET tradeDate = :tradeDate, ticker = :ticker, quantity = :quantity, pricePaid = :pricePaid, priceSold = :priceSold, tradeType = :tradeType, rating = :rating, notes = :notes",
     ExpressionAttributeValues: {
       ":tradeDate": data.tradeDate || null,
       ":ticker": data.ticker || null,
       ":quantity": data.quantity || null,
       ":pricePaid": data.pricePaid || null,
       ":priceSold": data.priceSold || null,
-      ":type": data.type || null,
+      ":tradeType": data.type || null,
       ":rating": data.rating || null,
       ":notes": data.notes || null,
     },
@@ -32,6 +32,7 @@ export async function main(event, context) {
     const result = await dynamoDbLib.call("update", params);
     return success({ status: true });
   } catch (e) {
+    console.log('e', e)
     return failure({ status: false });
   }
 }

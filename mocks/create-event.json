@@ -1,5 +1,5 @@
 {
-  "body": "{\"tradeDate\":\"12/12\",\"ticker\":\"YYYY\", \"quantity\":\"5\", \"pricePaid\":\"5\"}",
+  "body": "{\"tradeDate\":\"Thu May 09 2019\",\"ticker\":\"asdasd\",\"quantity\":\"asde\",\"pricePaid\":\"eee\",\"priceSold\":\"\",\"type\":\"Short\",\"notes\":\"\"}",
   "requestContext": {
     "identity": {
       "cognitoIdentityId": "USER-SUB-1234"

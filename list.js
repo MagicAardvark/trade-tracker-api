@@ -1,4 +1,5 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
+import { getCapital, gainDollars, gainPercent } from "./libs/calculate-lib";
 import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
@@ -19,8 +20,16 @@ export async function main(event, context) {
   try {
     const result = await dynamoDbLib.call("query", params);
     // Return the matching list of items in response body
-    return success(result.Items);
+    return success(result.Items.map(item=> {
+      return {
+        ...item,
+        capital: getCapital(item),
+        gainDollars: gainDollars(item),
+        gainPercent: gainPercent(item),
+      }
+    }));
   } catch (e) {
+    console.log(e)
     return failure({ status: false });
   }
 }

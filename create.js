@@ -14,7 +14,7 @@ export async function main(event, context) {
       quantity: data.quantity,
       pricePaid: data.pricePaid,
       priceSold: data.priceSold,
-      type: data.type,
+      tradeType: data.tradeType,
       rating: data.rating,
       notes: data.notes,
       createdAt: Date.now()

@@ -1,7 +1,7 @@
 {
-  "body": "{\"content\":\"new world\",\"attachment\":\"new.jpg\"}",
+  "body": "{\"tradeDate\":\"Thu May 09 2019\",\"ticker\":\"ASDASD\",\"quantity\":\"asde\",\"pricePaid\":\"66\",\"priceSold\":\"4\",\"tradeType\":\"Regular\",\"notes\":\"sfdfds\"}",
   "pathParameters": {
-    "id": "578eb840-f70f-11e6-9d1a-1359b3b22944"
+    "id": "5f984c80-80c5-11e9-a6d0-a5a4471c51db"
   },
   "requestContext": {
     "identity": {
